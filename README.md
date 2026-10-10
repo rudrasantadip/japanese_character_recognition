@@ -1,4 +1,27 @@
-# Japanese Character Recognizer
+<div align="center">
+  <img src="assets/banner.svg" alt="Japanese Character Recognizer" width="100%" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Flask-API-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
+  <img src="https://img.shields.io/badge/Python-3-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/CNN-from%20scratch-5127D8?style=for-the-badge&logo=tensorflow&logoColor=white" alt="CNN from scratch" />
+  <img src="https://img.shields.io/badge/OpenCV-preprocessing-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" />
+</div>
+
+<p align="center">
+  <a href="#-current-status">Status</a> ·
+  <a href="#-the-models">Models</a> ·
+  <a href="#-architecture">Architecture</a> ·
+  <a href="#-api-reference">API</a> ·
+  <a href="#-running-the-project">Run it</a>
+</p>
+
+---
 
 A Japanese handwritten character recognition system built from scratch.
 
@@ -6,17 +29,19 @@ Draw a character in the browser and a custom **Convolutional Neural Network (CNN
 
 ## Current Status
 
-- Hiragana recognition with **two selectable models** (Rud Lite and Rud Nano)
-- Draw a character directly in the browser, with pen, eraser, undo and clear
-- Switch models from a toolbar on the drawing page, then predict
-- A dedicated **Models page** that explains each model (dataset, input, preprocessing, output) using data fetched from the backend
-- Download links for the model files
-- Top-5 predictions with confidence, native character and romaji
-- Custom CNNs trained from scratch
-- Image preprocessing before prediction
-- REST API for model discovery, prediction and download
+| | |
+|---|---|
+| **Hiragana recognition** | Two selectable models (Rud Lite and Rud Nano) |
+| **Draw in the browser** | Pen, eraser, undo and clear |
+| **Model switcher** | Pick a model from the toolbar, then predict |
+| **Models page** | Explains each model (dataset, input, preprocessing, output) using data fetched from the backend |
+| ⬇**Downloads** | Download links for the model files |
+|  **Top-5 results** | Confidence, native character and romaji |
+| **Custom CNNs** | Trained from scratch, no pre-trained models |
+| **Preprocessing** | Model-specific image cleanup before prediction |
+| **REST API** | Model discovery, prediction and download |
 
-## The Models
+##  The Models
 
 | | Rud Lite | Rud Nano |
 |---|---|---|
@@ -27,27 +52,29 @@ Draw a character in the browser and a custom **Convolutional Neural Network (CNN
 | Label file | `hiragana_classes_lite.csv` | `hiragana_classes_nano.csv` |
 | Output | Softmax, multiclass | Softmax, multiclass |
 
-Both models share the same preprocessing ideas: threshold, crop to the character, add padding, center, resize, invert colors and normalize to 0–1. The exact settings for each model are published by the backend at `GET /models`, and the Models page in the frontend is generated from that response.
+> Both models share the same preprocessing ideas: threshold, crop to the character, add padding, center, resize, invert colors and normalize to 0–1. The exact settings for each model are published by the backend at `GET /models`, and the Models page in the frontend is generated from that response.
 
 ## Tech Stack
 
-### Frontend
-- React 18 and Vite
-- JavaScript, HTML/CSS
-- Canvas API for drawing and for rendering the pixel previews
-- `lucide-react` for icons
-
-### Backend
-- Python
-- Flask
-- OpenCV
-- NumPy
-- Custom CNNs
-
-### Machine Learning
-- Convolutional Neural Networks (CNNs)
-- Trained specifically for handwritten Hiragana
-- No pre-trained models
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <b>Frontend</b><br/><br/>
+      <img src="https://skillicons.dev/icons?i=react,vite,js,html,css&perline=5" alt="Frontend" /><br/><br/>
+      React 18 · Vite · Canvas API · <code>lucide-react</code>
+    </td>
+    <td align="center" width="33%">
+      <b>Backend</b><br/><br/>
+      <img src="https://skillicons.dev/icons?i=py,flask,opencv&perline=5" alt="Backend" /><br/><br/>
+      Python · Flask · OpenCV · NumPy
+    </td>
+    <td align="center" width="33%">
+      <b>Machine Learning</b><br/><br/>
+      <img src="https://skillicons.dev/icons?i=tensorflow,py&perline=5" alt="Machine learning" /><br/><br/>
+      Custom CNNs · Trained for handwritten Hiragana · No pre-trained models
+    </td>
+  </tr>
+</table>
 
 ## Architecture
 
@@ -200,11 +227,17 @@ CNNs learn spatial patterns from images automatically. For handwritten Japanese 
 
 Instead of defining those features by hand, the network learns them during training.
 
-## API Reference
+## 🔌 API Reference
 
 Base URL (development): `http://localhost:5000`
 
-CORS must be enabled for these routes so the Vite dev server can call them.
+> CORS must be enabled for these routes so the Vite dev server can call them.
+
+| Method | Route | Purpose |
+|---|---|---|
+| `GET` | `/models` | List models and their details |
+| `POST` | `/api/predict/<model-id>` | Predict a character with the chosen model |
+| `GET` | `/models/<model-id>/download` | Download the model file |
 
 ### `GET /models`
 
@@ -269,6 +302,9 @@ Keep the lookup table (instead of building paths from user input) so only the li
 ```text
 japanese-character-recognizer/
 │
+├── assets/
+│   └── banner.svg                  # README banner
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx                 # navbar, hash routing, model loading
@@ -297,7 +333,7 @@ japanese-character-recognizer/
 
 The exact structure may vary depending on the development setup.
 
-## Running the Project
+##  Running the Project
 
 ### Backend
 
@@ -338,8 +374,6 @@ npm run dev
 
 Open the address (usually `http://localhost:5173`).
 
-
-
 ## Prediction Flow
 
 When a user draws a character:
@@ -375,7 +409,13 @@ When a user draws a character:
    Result drawer in React
 ```
 
-## Datasets
+##Datasets
 
 - **Rud Lite** uses [Kuzushiji-49](https://github.com/rois-codh/kmnist) (28 × 28 grayscale, 49 classes).
 - **Rud Nano** uses [Handwritten Japanese Hiragana Characters](https://www.kaggle.com/datasets/farukece/handwritten-japanese-hiragana-characters) from Kaggle.
+
+<br/>
+
+<div align="center">
+  <sub>Built with React, Flask and a CNN trained from scratch.</sub>
+</div>
