@@ -104,7 +104,8 @@ class JapaneseCharacterApp:
             debug=self.debug
         )
 
+japanese_app = JapaneseCharacterApp()
+app = japanese_app.app
 
 if __name__ == "__main__":
-    application = JapaneseCharacterApp()
-    application.run()
+    japanese_app.run()
