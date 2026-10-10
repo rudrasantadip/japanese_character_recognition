@@ -1,0 +1,40 @@
+# ---------- Models ----------
+# Trained model folder (weights and anything else inside it)
+models/
+
+# Model weight files, wherever they end up
+*.keras
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.pb
+*.ckpt
+*.joblib
+*.pkl
+
+# ---------- Frontend ----------
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.vite/
+
+# ---------- Backend (Python) ----------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ---------- Editors / OS ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*

@@ -1,0 +1,134 @@
+
+{
+  "MODEL_PATH": "models",
+  "properties": "properties",
+
+  "models": {
+    "rud-lite": {
+      "name": "hiragana_model_lite.keras",
+      "version": "1.0.0",
+      "display_name": "Rud Lite",
+      "task": "handwritten_hiragana_classification",
+      "labels": "hiragana_classes_lite.csv",
+
+      "dataset": {
+        "name": "Kuzushiji-49",
+        "short_name": "K49",
+        "source": "Kuzushiji-49 dataset",
+        "url": "https://github.com/rois-codh/kmnist",
+        "type": "handwritten_character_images",
+        "image_shape": [28, 28, 1],
+        "color_mode": "grayscale",
+        "number_of_classes": 49
+      },
+
+      "input": {
+        "shape": [null, 28, 28, 1],
+        "height": 28,
+        "width": 28,
+        "channels": 1,
+        "color_mode": "grayscale",
+        "dtype": "float32",
+        "normalization": "zero_to_one",
+        "invert_colors": true
+      },
+
+      "output": {
+        "size": 28,
+        "type": "multiclass_classification",
+        "activation": "softmax",
+        "label": "hiragana_classes_lite.csv"
+      },
+
+      "preprocessing": {
+        "function": "preprocess_lite",
+        "crop_character": true,
+        "center_character": true,
+        "add_padding": true,
+        "resize": [28, 28],
+        "threshold": 240
+      },
+
+      "training": {
+        "framework": "TensorFlow",
+        "api": "Keras",
+        "architecture": "CNN",
+        "optimizer": null,
+        "loss": null,
+        "epochs": null,
+        "batch_size": null,
+        "validation_accuracy": null,
+        "test_accuracy": null
+      },
+
+      "files": {
+        "model": "hiragana_model_lite.keras",
+        "labels": "hiragana_classes_lite.csv"
+      }
+    },
+
+    "rud-nano": {
+      "name": "hiragana_model_nano.keras",
+      "version": "1.0.0",
+      "display_name": "Rud Nano",
+      "task": "handwritten_hiragana_classification",
+      "labels": "hiragana_classes_lite.csv",
+
+      "dataset": {
+        "name": "Hiragana Images",
+        "short_name": "hiragana_images",
+        "source": "Kaggle",
+        "url": "https://www.kaggle.com/datasets/farukece/handwritten-japanese-hiragana-characters",
+        "type": "handwritten_character_images",
+        "image_shape": null,
+        "color_mode": "grayscale",
+        "number_of_classes": null,
+        "number_of_samples": null
+      },
+
+      "input": {
+        "shape": [null, 64, 64, 1],
+        "height": 64,
+        "width": 64,
+        "channels": 1,
+        "color_mode": "grayscale",
+        "dtype": "float32",
+        "normalization": "zero_to_one",
+        "invert_colors": true
+      },
+
+      "output": {
+        "size": 64,
+        "type": "multiclass_classification",
+        "activation": "softmax",
+        "label": "hiragana_classes_nano.csv"
+      },
+
+      "preprocessing": {
+        "function": "preprocess_nano",
+        "crop_character": true,
+        "center_character": true,
+        "add_padding": true,
+        "resize": [64, 64],
+        "threshold": 240
+      },
+
+      "training": {
+        "framework": "TensorFlow",
+        "api": "Keras",
+        "architecture": "CNN",
+        "optimizer": null,
+        "loss": null,
+        "epochs": null,
+        "batch_size": null,
+        "validation_accuracy": null,
+        "test_accuracy": null
+      },
+
+      "files": {
+        "model": "hiragana_model_nano.keras",
+        "labels": "hiragana_classes_nano.csv"
+      }
+    }
+  }
+}
